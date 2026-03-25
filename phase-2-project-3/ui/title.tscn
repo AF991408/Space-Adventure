@@ -1,0 +1,148 @@
+[gd_scene load_steps=12 format=3 uid="uid://dpdp1qjylryw4"]
+
+[ext_resource type="Script" path="res://ui/title.gd" id="1_14ybs"]
+[ext_resource type="Texture2D" uid="uid://bnc6yk7xirgbp" path="res://newassets/istockphoto-1403514917-612x612.jpg" id="2_fnwe5"]
+[ext_resource type="Texture2D" uid="uid://6xqnyllnldhe" path="res://newassets/oie_isdA4btwTdX6.png" id="3_ebb61"]
+[ext_resource type="FontFile" uid="uid://cngnygrdlvmxy" path="res://assets/Kenney Thick.ttf" id="3_wialh"]
+[ext_resource type="AudioStream" uid="uid://dfq636a135hbo" path="res://assets/audio/pickup2.ogg" id="5_f5gnq"]
+[ext_resource type="Texture2D" uid="uid://dx0w6qu8xidgy" path="res://newassets/oxygen.png" id="6_nr50l"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_j5pdr"]
+font = ExtResource("3_wialh")
+font_size = 1
+outline_size = 1000
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_n35j1"]
+font = ExtResource("3_wialh")
+font_size = 48
+outline_size = 15
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_fdghh"]
+font = ExtResource("3_wialh")
+font_size = 75
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_lnbeo"]
+font = ExtResource("3_wialh")
+
+[sub_resource type="LabelSettings" id="LabelSettings_63x2o"]
+font = ExtResource("3_wialh")
+font_size = 10
+font_color = Color(1, 1, 0, 1)
+
+[node name="title" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_14ybs")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_fnwe5")
+stretch_mode = 6
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -363.0
+offset_top = 545.0
+offset_right = 1826.0
+offset_bottom = 913.0
+texture = ExtResource("3_ebb61")
+stretch_mode = 1
+
+[node name="Title" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -360.0
+offset_top = -40.5
+offset_right = 360.0
+offset_bottom = 40.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Jungle Jump
+"
+label_settings = SubResource("LabelSettings_j5pdr")
+
+[node name="Message" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -417.0
+offset_top = -54.0
+offset_right = 417.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Press Esc to Play"
+label_settings = SubResource("LabelSettings_n35j1")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(159, 594)
+stream = ExtResource("5_f5gnq")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -426.5
+offset_top = -42.5
+offset_right = 426.5
+offset_bottom = 42.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Space Escape"
+label_settings = SubResource("LabelSettings_fdghh")
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 292.0
+offset_top = 380.0
+offset_right = 849.0
+offset_bottom = 403.0
+text = "Your station has been overun by ALIENS!
+"
+label_settings = SubResource("LabelSettings_lnbeo")
+
+[node name="Label3" type="Label" parent="."]
+layout_mode = 0
+offset_left = 351.0
+offset_top = 416.0
+offset_right = 1061.0
+offset_bottom = 439.0
+text = "Gather all 3 Research Notes for the Secret Ending"
+label_settings = SubResource("LabelSettings_63x2o")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(468, 470)
+scale = Vector2(3, 3)
+texture = ExtResource("6_nr50l")
+
+[node name="Label4" type="Label" parent="."]
+layout_mode = 0
+offset_left = 495.0
+offset_top = 471.0
+offset_right = 1205.0
+offset_bottom = 494.0
+text = "Lowers Your Gravity for 3 Sec"
+label_settings = SubResource("LabelSettings_63x2o")

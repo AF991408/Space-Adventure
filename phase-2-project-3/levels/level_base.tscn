@@ -1,0 +1,167 @@
+[gd_scene load_steps=23 format=3 uid="uid://bqt4mi02chwnf"]
+
+[ext_resource type="Script" path="res://levels/level_base.gd" id="1_v43ys"]
+[ext_resource type="Texture2D" uid="uid://bcy3j8s55vcg1" path="res://newassets/thumb-1920-885542.png" id="2_cv0v2"]
+[ext_resource type="Texture2D" uid="uid://6xqnyllnldhe" path="res://newassets/oie_isdA4btwTdX6.png" id="3_ew4ic"]
+[ext_resource type="TileSet" uid="uid://bm8oqdr81k7gj" path="res://levels/level_base.tres" id="4_et57i"]
+[ext_resource type="TileSet" uid="uid://c11a4pps6cfng" path="res://assets/tilesets/tiles_world.tres" id="5_n6sti"]
+[ext_resource type="TileSet" uid="uid://b82s86n2wsif1" path="res://assets/tilesets/tiles_spikes.tres" id="6_j120p"]
+[ext_resource type="TileSet" uid="uid://i0bcjjjf8mkv" path="res://tiles_items.tres" id="6_kg34x"]
+[ext_resource type="PackedScene" uid="uid://b7pawt7j84gjo" path="res://player.tscn" id="7_ys4h5"]
+[ext_resource type="PackedScene" uid="uid://dp06elydd2c0a" path="res://enemies/enemy.tscn" id="10_1gvaq"]
+[ext_resource type="PackedScene" uid="uid://cgmqt6gesnkr8" path="res://ui/hud.tscn" id="11_0p3dq"]
+[ext_resource type="AudioStream" uid="uid://bjyu3ag74o0r4" path="res://newassets/tunnelmusic.mp3" id="11_jvgun"]
+[ext_resource type="PackedScene" uid="uid://xldcrmapqa5y" path="res://item.tscn" id="13_0vskc"]
+[ext_resource type="AudioStream" uid="uid://8a2ufh1rw7lm" path="res://newassets/gasp-6253.mp3" id="14_42xkq"]
+[ext_resource type="AudioStream" uid="uid://dfq636a135hbo" path="res://assets/audio/pickup2.ogg" id="14_krcee"]
+[ext_resource type="AudioStream" uid="uid://l4rciye2qhuw" path="res://newassets/yay-6326.mp3" id="15_rqtu0"]
+[ext_resource type="Texture2D" uid="uid://dx0w6qu8xidgy" path="res://newassets/oxygen.png" id="16_bec01"]
+[ext_resource type="Texture2D" uid="uid://cdvj6kd0pj00p" path="res://newassets/laserthing1.png" id="17_we2b0"]
+[ext_resource type="Texture2D" uid="uid://dts3pmtl2i6nl" path="res://newassets/laserthingy2.png" id="18_vvdnp"]
+[ext_resource type="Script" path="res://levels/laser.gd" id="19_we5i6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cmqwm"]
+size = Vector2(10, 18)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q47vo"]
+size = Vector2(2, 92)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oqlqm"]
+size = Vector2(4, 73)
+
+[node name="LevelBase" type="Node2D"]
+script = ExtResource("1_v43ys")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.2, 1)
+motion_mirroring = Vector2(576, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(-250, -150)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_cv0v2")
+centered = false
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
+texture_repeat = 3
+position = Vector2(587, 489)
+scale = Vector2(1.9483, 2.30842)
+texture = ExtResource("3_ew4ic")
+region_enabled = true
+region_rect = Rect2(0, 0, 880, 368)
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource("4_et57i")
+format = 2
+
+[node name="Items" type="TileMap" parent="."]
+tile_set = ExtResource("6_kg34x")
+format = 2
+
+[node name="World" type="TileMap" parent="."]
+tile_set = ExtResource("5_n6sti")
+format = 2
+
+[node name="Danger" type="TileMap" parent="."]
+tile_set = ExtResource("6_j120p")
+format = 2
+
+[node name="Player" parent="." groups=["Player"] instance=ExtResource("7_ys4h5")]
+
+[node name="Enemy" parent="." instance=ExtResource("10_1gvaq")]
+position = Vector2(243.5, 199.5)
+scale = Vector2(1.50341, 1.31793)
+
+[node name="SpawnPoint" type="Marker2D" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HUD" parent="CanvasLayer" instance=ExtResource("11_0p3dq")]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_jvgun")
+
+[node name="Item" parent="." instance=ExtResource("13_0vskc")]
+
+[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("14_krcee")
+
+[node name="gasp" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("14_42xkq")
+
+[node name="yay" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("15_rqtu0")
+
+[node name="oxygen" type="Area2D" parent="."]
+position = Vector2(-97, -2)
+collision_layer = 15
+collision_mask = 15
+
+[node name="gen" type="Sprite2D" parent="oxygen"]
+scale = Vector2(2, 2)
+texture = ExtResource("16_bec01")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="oxygen"]
+position = Vector2(0, 4)
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_cmqwm")
+
+[node name="laser" type="Area2D" parent="."]
+collision_layer = 15
+collision_mask = 15
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="laser"]
+position = Vector2(118, -25)
+shape = SubResource("RectangleShape2D_q47vo")
+
+[node name="Sprite2D" type="Sprite2D" parent="laser"]
+position = Vector2(118, -25.75)
+scale = Vector2(1.21875, 1.70313)
+texture = ExtResource("17_we2b0")
+
+[node name="Sprite2D2" type="Sprite2D" parent="laser"]
+position = Vector2(118, -24.5)
+scale = Vector2(1, 1.53125)
+texture = ExtResource("18_vvdnp")
+
+[node name="laser2" type="Area2D" parent="."]
+position = Vector2(1099, 159)
+collision_layer = 15
+collision_mask = 15
+script = ExtResource("19_we5i6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="laser2"]
+position = Vector2(118, -25)
+shape = SubResource("RectangleShape2D_oqlqm")
+
+[node name="Sprite2D" type="Sprite2D" parent="laser2"]
+position = Vector2(118, -17.75)
+scale = Vector2(1.21875, 1.20312)
+texture = ExtResource("17_we2b0")
+
+[node name="Sprite2D2" type="Sprite2D" parent="laser2"]
+position = Vector2(118, -16)
+texture = ExtResource("18_vvdnp")
+
+[node name="spikes1" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="spikes1"]
+
+[node name="spikes2" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="spikes2"]
+
+[connection signal="score_changed" from="." to="CanvasLayer/HUD" method="update_score"]
+[connection signal="died" from="Player" to="." method="_on_player_died"]
+[connection signal="life_changed" from="Player" to="CanvasLayer/HUD" method="update_life"]
+[connection signal="body_entered" from="Item" to="." method="_on_item_body_entered"]
+[connection signal="body_entered" from="oxygen" to="." method="_on_oxygen_body_entered"]
+[connection signal="body_entered" from="oxygen" to="." method="_on_phone_1_body_entered"]
+[connection signal="area_shape_entered" from="laser" to="." method="_on_laser_area_shape_entered"]
+[connection signal="body_entered" from="laser" to="." method="_on_laser_body_entered"]
+[connection signal="body_entered" from="spikes1" to="." method="_on_spikes_1_body_entered"]
+[connection signal="body_entered" from="spikes2" to="." method="_on_spikes_2_body_entered"]
